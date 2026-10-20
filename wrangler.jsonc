@@ -1,0 +1,10 @@
+{
+  "name": "fun-facts",
+  "account_id": "db0374b37171e14e52b085a4b4f0d1dc",
+  "compatibility_date": "2026-10-20",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  }
+}

@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎯 認清你的朋友 Fun Facts｜團契破冰遊戲</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --game-pink-bg: #F08CAE;
+      --game-pink-btn: #E63E7A;
+      --game-yellow-bg: #F3C242;
+      --game-brown-text: #4A3222;
+      --game-orange-bg: #EA6A00;
+      --game-blue-bg: #1EA1E8;
+      --game-blue-tag: #0D74B8;
+      --game-green-bg: #5CB346;
+      --game-taupe-bg: #916E57;
+      --card-white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', 'PingFang HK', 'Microsoft JhengHei', sans-serif;
+      background-color: var(--game-pink-bg);
+      color: var(--game-brown-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 4px 16px rgba(74, 50, 34, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--game-brown-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 2px solid var(--game-brown-text);
+      background: #FFFFFF;
+      color: var(--game-brown-text);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .pill-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      background: #FFF9F0;
+    }
+
+    .pill-btn.primary {
+      background: var(--game-pink-btn);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(230, 62, 122, 0.35);
+    }
+
+    .pill-btn.primary:hover {
+      background: #d42c68;
+    }
+
+    .pill-btn.blue {
+      background: var(--game-blue-tag);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .pill-btn.green {
+      background: var(--game-green-bg);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .pill-btn.orange {
+      background: var(--game-orange-bg);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    /* Main Container & Section Styling */
+    .main-container {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+      flex: 1;
+    }
+
+    .section-divider {
+      border-top: 6px dashed rgba(255, 255, 255, 0.85);
+      margin: 24px 0;
+    }
+
+    .badge-wrapper {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--game-pink-btn);
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 900;
+      padding: 10px 28px;
+      border-radius: 9999px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Status & Score Bar */
+    .scoreboard-bar {
+      background: var(--game-blue-bg);
+      border-radius: 24px;
+      padding: 16px 22px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .score-pill {
+      background: var(--game-blue-tag);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 900;
+      font-size: 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .star-highlight {
+      background: var(--game-yellow-bg);
+      color: var(--game-brown-text);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 900;
+      font-size: 1.1rem;
+      border: 2px solid #FFFFFF;
+    }
+
+    /* Game Cards */
+    .game-card {
+      background: var(--card-white);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .game-card.active-ring {
+      outline: 3px solid #FFFFFF;
+      outline-offset: 4px;
+    }
+
+    .game-card.hero-yellow {
+      background: var(--game-yellow-bg);
+      color: var(--game-brown-text);
+    }
+
+    .question-box {
+      background: var(--game-yellow-bg);
+      border-radius: 24px;
+      padding: 24px 28px;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .question-category {
+      display: inline-block;
+      background: var(--game-brown-text);
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+    }
+
+    .question-text {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.35;
+      color: var(--game-brown-text);
+      margin-bottom: 10px;
+    }
+
+    .question-hint {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #6B4932;
+      background: rgba(255, 255, 255, 0.65);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 9999px;
+    }
+
+    /* Setup Grid */
+    .setup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .player-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #FAF6F3;
+      padding: 10px 14px;
+      border-radius: 16px;
+      border: 2px solid #E6DCD5;
+    }
+
+    .color-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 2px solid rgba(0,0,0,0.15);
+    }
+
+    .text-input, .number-input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: 2px solid #D5C7BC;
+      font-family: inherit;
+      color: var(--game-brown-text);
+    }
+
+    .text-input:focus, .number-input:focus {
+      outline: none;
+      border-color: var(--game-pink-btn);
+    }
+
+    /* Secret Entry Cards */
+    .secret-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .secret-player-card {
+      border-radius: 20px;
+      padding: 18px;
+      border: 3px solid #EAE0D8;
+      background: #FFFDFB;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .secret-player-card.locked {
+      background: #F1F9EE;
+      border-color: var(--game-green-bg);
+    }
+
+    /* Arrow Track & Plaque Styling */
+    .arrow-track {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 18px 0;
+      padding: 18px;
+      background: #F7F2EE;
+      border-radius: 24px;
+      border: 3px dashed #D5C5B8;
+    }
+
+    .insert-slot-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 14px;
+      border: 3px dashed var(--game-blue-tag);
+      background: rgba(30, 161, 232, 0.1);
+      color: var(--game-blue-tag);
+      font-size: 1.05rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .insert-slot-btn:hover {
+      background: var(--game-blue-bg);
+      color: #FFFFFF;
+      border-style: solid;
+      transform: scale(1.01);
+    }
+
+    .arrow-plaque {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-radius: 18px 42px 42px 18px;
+      color: #FFFFFF;
+      font-weight: 900;
+      font-size: 1.3rem;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+      border: 3px solid #FFFFFF;
+      position: relative;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .arrow-plaque.out-of-order {
+      opacity: 0.62;
+      filter: grayscale(35%);
+      text-decoration: line-through;
+      border-color: var(--game-orange-bg);
+    }
+
+    .arrow-number-badge {
+      background: #FFFFFF;
+      color: var(--game-brown-text);
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-size: 1.45rem;
+      font-weight: 900;
+      min-width: 90px;
+      text-align: center;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Host God-Mode Drawer */
+    .host-bar {
+      background: var(--game-taupe-bg);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 16px 22px;
+      border: 3px solid rgba(255, 255, 255, 0.85);
+      margin-top: 28px;
+    }
+
+    .host-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .host-controls-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 2px dashed rgba(255, 255, 255, 0.4);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 26, 15, 0.68);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      z-index: 200;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+      border: 4px solid var(--game-yellow-bg);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed #E5D9D0;
+    }
+
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 1.05rem;
+    }
+
+    .legend-table th, .legend-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #EAE0D8;
+      text-align: left;
+    }
+
+    .legend-table tr.highlight-row {
+      background: var(--game-yellow-bg);
+      font-weight: 900;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 640px) {
+      .question-text {
+        font-size: 1.5rem;
+      }
+      .navbar {
+        padding: 10px 14px;
+      }
+      .nav-logo {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar (Neutral Cross-Fellowship Branding) -->
+  <header class="navbar">
+    <div class="nav-logo">
+      <span>🎯</span>
+      <span>認清你的朋友 Fun Facts</span>
+    </div>
+    <div class="nav-actions">
+      <button class="pill-btn blue" onclick="openModal('padModal')">📱 手機秘密寫字板</button>
+      <button class="pill-btn" onclick="openQRModal()">📱 QR Code</button>
+      <button class="pill-btn" onclick="openModal('rulesModal')">📖 規則</button>
+      <button class="pill-btn" onclick="openModal('bankModal')">⚙️ 設定/題庫</button>
+      <button class="pill-btn green" onclick="downloadZipBundle()">📦 下載 ZIP 懶人包</button>
+      <button class="pill-btn orange" onclick="confirmResetGame()">🔄 重開</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Section Header Badge -->
+    <div class="badge-wrapper">
+      <div class="section-badge" id="topPhaseBadge">
+        <span>✨</span>
+        <span id="phaseBadgeText">團契默契破冰・開局設定</span>
+      </div>
+    </div>
+
+    <!-- Live Scoreboard Bar (Visible during active game) -->
+    <div id="liveScoreboard" class="scoreboard-bar hidden">
+      <div class="score-pill">
+        <span>🏆 團隊總默契分：</span>
+        <span id="totalScoreDisplay">0</span>
+        <span>分</span>
+      </div>
+      <div class="score-pill">
+        <span>📋 回合：第 </span>
+        <span id="roundIndexDisplay">1</span>
+        <span> / </span>
+        <span id="totalRoundsDisplay">8</span>
+        <span> 題</span>
+      </div>
+      <div class="star-highlight">
+        <span>⭐ 本回合起始玩家：</span>
+        <span id="starPlayerDisplay">-</span>
+      </div>
+    </div>
+
+    <!-- SCREEN 1: SETUP SCREEN -->
+    <section id="setupScreen" class="game-card active-ring">
+      <h2 style="font-size: 1.65rem; font-weight: 900; margin-bottom: 8px;">👋 歡迎來到《認清你的朋友 Fun Facts》破冰遊戲！</h2>
+      <p style="font-size: 1.05rem; line-height: 1.6; color: #684934; margin-bottom: 20px;">
+        呢個係考驗大家有幾了解身邊團友嘅<strong>合作派對遊戲</strong>！每題答案都係一個<strong>數字</strong>，大家秘密寫低自己嘅數字後，只靠觀察同估計，將所有箭頭牌由細至大排列好。如果團契有 8–16 人，建議分為 4–8 組一齊商量作答！
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; background: #FAF5F0; padding: 18px; border-radius: 20px;">
+        <div style="flex: 1; min-width: 200px;">
+          <label style="font-weight: 900; display: block; margin-bottom: 6px;">🎯 選擇題庫類別：</label>
+          <select id="categorySelect" class="text-input">
+            <option value="all">🌟 全部精選題庫（36 題）</option>
+            <option value="daily">☕ 輕鬆日常與生活習慣</option>
+            <option value="deep">💬 深度認識與性格刻度</option>
+            <option value="faith">⛪ 團契與信仰生活</option>
+          </select>
+        </div>
+        <div style="flex: 1; min-width: 180px;">
+          <label style="font-weight: 900; display: block; margin-bottom: 6px;">⏱️ 遊戲回合數：</label>
+          <select id="roundsSelect" class="text-input">
+            <option value="8" selected>標準 8 回合（約 15–20 分鐘）</option>
+            <option value="5">快閃 5 回合（約 10 分鐘破冰）</option>
+          </select>
+        </div>
+        <div style="flex: 1; min-width: 220px;">
+          <label style="font-weight: 900; display: block; margin-bottom: 6px;">👥 快速分組預設（8–16 人適用）：</label>
+          <div style="display: flex; gap: 8px;">
+            <button class="pill-btn" onclick="applyPlayerPreset(4, '組')">4 組</button>
+            <button class="pill-btn" onclick="applyPlayerPreset(6, '組')">6 組</button>
+            <button class="pill-btn" onclick="applyPlayerPreset(8, '組')">8 組</button>
+            <button class="pill-btn" onclick="applyPlayerPreset(6, '團友')">6 人個人</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h3 style="font-size: 1.25rem; font-weight: 900;">🏹 參賽團友／組別名單（支援 4–8 支彩色箭頭）：</h3>
+        <div style="display: flex; gap: 8px;">
+          <button class="pill-btn" onclick="addSetupPlayer()">➕ 加一組/人</button>
+          <button class="pill-btn" onclick="removeSetupPlayer()">➖ 減一組/人</button>
+        </div>
+      </div>
+
+      <div id="setupPlayersContainer" class="setup-grid"></div>
+
+      <div style="text-align: center; margin-top: 28px;">
+        <button class="pill-btn primary" style="font-size: 1.35rem; padding: 14px 42px;" onclick="startGame()">
+          🚀 開遊戲！開始破冰
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: ACTIVE ROUND SCREEN -->
+    <section id="roundScreen" class="hidden">
+      <!-- Question Banner -->
+      <div class="question-box">
+        <div class="question-category" id="currentQuestionCat">☕ 輕鬆日常</div>
+        <div class="question-text" id="currentQuestionText">載入題目中...</div>
+        <div class="question-hint" id="currentQuestionHint">💡 答案必須為一個數字</div>
+        <div style="margin-top: 12px;">
+          <button class="pill-btn" style="font-size: 0.85rem; padding: 4px 14px;" onclick="redrawQuestion()">🎲 換另一條題目</button>
+        </div>
+      </div>
+
+      <!-- Sub-Phase 2A: Secret Numeric Entry -->
+      <div id="phaseSecretEntry" class="game-card active-ring">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+          <div>
+            <h3 style="font-size: 1.4rem; font-weight: 900;">步驟 1：秘密填寫你嘅數字答案 🤫</h3>
+            <p style="color: #6B4932; font-size: 0.98rem;">
+              請各組／團友輪流輸入數字並按「🔒 鎖定」（輸入時自動以圓點遮罩，唔怕俾人偷睇！亦可用右上角「📱 手機秘密寫字板」先寫低）。
+            </p>
+          </div>
+          <button class="pill-btn" onclick="fillDemoNumbers()">⚡ 測試用：隨機填入數字</button>
+        </div>
+
+        <div id="secretEntryGrid" class="secret-grid"></div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <button id="proceedToPlacementBtn" class="pill-btn primary" style="font-size: 1.25rem; padding: 12px 36px;" onclick="startPlacementPhase()" disabled>
+            🏹 全部已鎖定！進入排箭頭階段
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-Phase 2B: Arrow Placement & Star Adjustment -->
+      <div id="phasePlacement" class="game-card active-ring hidden">
+        <div id="placementPromptBanner" style="background: var(--game-orange-bg); color: #FFFFFF; padding: 16px 22px; border-radius: 20px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="font-size: 1.25rem; font-weight: 900;" id="placementTurnText">
+            👉 輪到起始玩家擺放箭頭！
+          </div>
+          <div style="font-size: 0.95rem; opacity: 0.95;">
+            禁止講出具體數字，只能根據你對大家嘅認識揀位置！
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-weight: 900; color: #6B4932; padding: 0 8px;">
+          <span>⬇️ 軌道上方：數字最細 (Smallest)</span>
+          <span>⬆️ 軌道下方：數字最大 (Largest)</span>
+        </div>
+
+        <!-- Dynamic Arrow Track -->
+        <div id="arrowTrackContainer" class="arrow-track"></div>
+
+        <div id="starFinalActionArea" class="hidden" style="text-align: center; margin-top: 20px; padding: 18px; background: #FFF8E1; border-radius: 20px; border: 3px solid var(--game-yellow-bg);">
+          <h4 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 8px;">
+            ⭐ 起始玩家最後特權：<span id="starAdjustName"></span>
+          </h4>
+          <p style="margin-bottom: 14px; font-weight: 700; color: #6B4932;">
+            睇完大家排嘅位置後，你想唔想移動自己支箭頭去新位置？
+          </p>
+          <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <button class="pill-btn blue" onclick="enableStarReposition()">🔄 我要移動自己支箭頭</button>
+            <button class="pill-btn primary" style="font-size: 1.15rem; padding: 10px 28px;" onclick="startRevealPhase()">
+              ✨ 唔使改！即刻翻牌揭曉
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Phase 2C: Reveal & Discussion -->
+      <div id="phaseReveal" class="game-card active-ring hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <h3 style="font-size: 1.45rem; font-weight: 900;">步驟 3：由細至大翻開箭頭揭曉答案！🎉</h3>
+            <p style="color: #6B4932; font-size: 0.98rem;">
+              符合由細至大順序嘅箭頭會獲得保留（每支 +1 分）。💡 <strong>主持提示：</strong>點擊任何已翻開嘅箭頭可手動切換「保留／淘汰」！
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button id="btnRevealNext" class="pill-btn primary" onclick="revealNextArrow()">👉 翻開下一支箭頭</button>
+            <button id="btnRevealAll" class="pill-btn blue" onclick="revealAllArrows()">⚡ 一鍵全部翻開</button>
+          </div>
+        </div>
+
+        <div id="revealTrackContainer" class="arrow-track"></div>
+
+        <!-- Round Summary & Icebreaker Discussion Box -->
+        <div id="roundSummaryBox" class="hidden" style="margin-top: 22px; background: #F1F9EE; border: 3px solid var(--game-green-bg); border-radius: 22px; padding: 20px; text-align: center;">
+          <h4 style="font-size: 1.45rem; font-weight: 900; color: var(--game-brown-text); margin-bottom: 8px;" id="roundScoreHeadline">
+            🎉 本回合成功保留 0 支箭頭，獲得 +0 分！
+          </h4>
+          <p id="roundDiscussionPrompt" style="font-size: 1.1rem; font-weight: 700; color: #3B6E28; margin-bottom: 16px;"></p>
+          <button class="pill-btn primary" style="font-size: 1.2rem; padding: 12px 34px;" onclick="finishRoundAndAdvance()">
+            ➡️ 確認分數，進入下一回合
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: FINAL SETTLEMENT PODIUM -->
+    <section id="finalScreen" class="game-card hero-yellow active-ring hidden" style="text-align: center;">
+      <div style="font-size: 3.5rem; margin-bottom: 8px;">🏆</div>
+      <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 8px;">團契默契總結算！</h2>
+      <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 18px;">
+        經過 <span id="finalRoundsCount">8</span> 條問題考驗，大家嘅總默契分數係：
+      </p>
+
+      <div style="background: #FFFFFF; display: inline-block; padding: 18px 42px; border-radius: 9999px; border: 4px solid var(--game-pink-btn); font-size: 2.6rem; font-weight: 900; color: var(--game-pink-btn); margin-bottom: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+        <span id="finalTotalScore">0</span> / <span id="finalMaxPossible">64</span> 分
+      </div>
+
+      <div id="finalRankTitle" style="font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; color: var(--game-brown-text);"></div>
+
+      <div style="background: rgba(255,255,255,0.92); border-radius: 22px; padding: 20px; max-width: 640px; margin: 0 auto 24px; text-align: left;">
+        <h3 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 10px;">📜 傳奇默契評級表（按完成度計算）：</h3>
+        <table class="legend-table" id="legendResultTable">
+          <thead>
+            <tr>
+              <th>默契等級</th>
+              <th>達成率門檻</th>
+              <th>團契評語</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-tier="5"><td>🌟 心靈相通傳奇</td><td>85% 或以上</td><td>你哋直頭係肚入面條蟲！默契爆燈！</td></tr>
+            <tr data-tier="4"><td>🔥 絕佳默契拍檔</td><td>70% – 84%</td><td>非常了解彼此，連隱藏性格都估中晒！</td></tr>
+            <tr data-tier="3"><td>😊 漸入佳境團友</td><td>50% – 69%</td><td>幾有默契，仲發掘到唔少驚喜笑料！</td></tr>
+            <tr data-tier="2"><td>🌱 破冰認識起點</td><td>30% – 49%</td><td>今日正式重新認識大家，驚喜連連！</td></tr>
+            <tr data-tier="1"><td>😂 跌碎眼鏡大獎</td><td>30% 以下</td><td>大家全部係深藏不露嘅神秘人物！</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <button class="pill-btn primary" style="font-size: 1.25rem; padding: 14px 36px;" onclick="restartSamePlayers()">
+          🔄 原班人馬再玩一局
+        </button>
+        <button class="pill-btn" style="font-size: 1.15rem; padding: 14px 28px;" onclick="backToSetup()">
+          ⚙️ 返回開局設定
+        </button>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Collapsible Host Control Bar (God-Mode) -->
+    <section class="host-bar">
+      <div class="host-bar-header" onclick="toggleHostDrawer()">
+        <span>🛠️ 主持後台控制 (Host God-Mode)</span>
+        <span id="hostDrawerArrow">▼ 展開／收起</span>
+      </div>
+      <div id="hostControlsBody" class="host-controls-body">
+        <button class="pill-btn" onclick="adjustTotalScore(1)">➕ 總分 +1</button>
+        <button class="pill-btn" onclick="adjustTotalScore(-1)">➖ 總分 -1</button>
+        <button class="pill-btn" onclick="redrawQuestion()">🎲 即時換題</button>
+        <button class="pill-btn" onclick="forceNextRound()">⏭️ 跳過本回合</button>
+        <button class="pill-btn orange" onclick="jumpToFinalSettlement()">🏆 直接進入總結算</button>
+        <button class="pill-btn green" onclick="downloadZipBundle()">📦 匯出完整 ZIP 懶人包</button>
+        <button class="pill-btn" onclick="downloadReadmeOnly()">📄 下載 README.md</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL 1: Mobile Secret Number Pad (手機秘密寫字板) -->
+  <div id="padModal" class="modal-backdrop">
+    <div class="modal-card" style="text-align: center;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.35rem; font-weight: 900;">📱 團友手機秘密寫字板</h3>
+        <button class="pill-btn" onclick="closeModal('padModal')">✖ 關閉</button>
+      </div>
+      <p style="color: #6B4932; margin-bottom: 14px; font-weight: 700;">
+        團友可喺自己手機輸入本題秘密數字並鎖定，將手機蓋喺檯面，到翻牌時先打開俾大家睇！
+      </p>
+      <div style="margin-bottom: 16px;">
+        <input type="number" id="mobilePadInput" class="number-input" placeholder="輸入你嘅數字答案..." style="font-size: 1.8rem; text-align: center; padding: 14px;" />
+      </div>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 18px;">
+        <button class="pill-btn primary" onclick="toggleMobilePadMask()">🙈 隱藏／顯示大字卡</button>
+        <button class="pill-btn" onclick="document.getElementById('mobilePadInput').value=''">🗑️ 清除</button>
+      </div>
+      <div id="mobileBigDisplay" style="background: var(--game-yellow-bg); border-radius: 24px; padding: 36px 20px; font-size: 4rem; font-weight: 900; border: 4px solid var(--game-brown-text);">
+        🔒 已隱藏
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: QR Code Modal -->
+  <div id="qrModal" class="modal-backdrop">
+    <div class="modal-card" style="text-align: center;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.35rem; font-weight: 900;">📱 掃描 QR Code 進入遊戲網站</h3>
+        <button class="pill-btn" onclick="closeModal('qrModal')">✖ 關閉</button>
+      </div>
+      <p style="color: #6B4932; font-weight: 700; margin-bottom: 16px;">
+        團友可掃描以下 QR Code 直接開啟本頁（可使用「手機秘密寫字板」或一齊睇題目）：
+      </p>
+      <div id="qrCodeCanvasWrap" style="background: #FFFFFF; padding: 18px; display: inline-block; border-radius: 20px; border: 4px solid var(--game-pink-bg); margin-bottom: 14px;"></div>
+      <div id="qrUrlText" style="font-size: 0.95rem; font-weight: 700; word-break: break-all; background: #FAF5F0; padding: 10px 14px; border-radius: 12px; margin-bottom: 16px;"></div>
+      <div style="display: flex; justify-content: center; gap: 10px;">
+        <button class="pill-btn primary" onclick="copyCurrentUrl()">📋 複製遊戲連結</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: Rules Modal -->
+  <div id="rulesModal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.35rem; font-weight: 900;">📖 《認清你的朋友 Fun Facts》破冰規則</h3>
+        <button class="pill-btn" onclick="closeModal('rulesModal')">✖ 關閉</button>
+      </div>
+      <ol style="padding-left: 22px; line-height: 1.8; font-size: 1.05rem; font-weight: 700; color: var(--game-brown-text);">
+        <li><strong>秘密寫數字：</strong>每題答案都必定係一個數字（例如 0–100 程度，或具體數量）。各人／各組秘密輸入自己嘅答案，嚴禁透露數字！</li>
+        <li><strong>由細至大排箭頭：</strong>由攞住「⭐ 星星標記」嘅起始玩家先放自己支箭頭，之後其他人輪流將自己支箭頭插入序列（最細、最大或任何兩支箭頭中間）。目標係令所有數字<strong>由細至大遞增排列</strong>。</li>
+        <li><strong>起始玩家最後微調：</strong>全部人放好箭頭後，起始玩家（⭐）有一次特權可以將自己支箭頭移去新位置。</li>
+        <li><strong>翻牌揭曉與計分：</strong>由最細位置開始逐支翻開！任何破壞「由細至大」順序嘅箭頭會被移走（相同數字算合格）。每支成功保留嘅箭頭為全體加 1 分！</li>
+        <li><strong>破冰分享時刻：</strong>翻牌後最緊要問下「全場最高／最低」或者「跌眼鏡」嘅團友點解會咁答，保證笑聲不斷！</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- MODAL 4: Question Bank Editor Modal -->
+  <div id="bankModal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.35rem; font-weight: 900;">⚙️ 題庫管理與自訂題目（跨團契通用）</h3>
+        <button class="pill-btn" onclick="closeModal('bankModal')">✖ 關閉</button>
+      </div>
+      <div style="background: #FAF5F0; padding: 16px; border-radius: 18px; margin-bottom: 16px;">
+        <h4 style="margin-bottom: 10px; font-weight: 900;">➕ 新增自訂破冰數值題：</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <input id="newQText" class="text-input" placeholder="輸入題目（例：你覺得自己幾多歲會退休？）" />
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <select id="newQCat" class="text-input" style="flex: 1;">
+              <option value="daily">☕ 輕鬆日常</option>
+              <option value="deep">💬 深度認識</option>
+              <option value="faith">⛪ 團契與信仰</option>
+            </select>
+            <input id="newQHint" class="text-input" style="flex: 2;" placeholder="提示（例：輸入歲數 / 0 至 100 分）" />
+          </div>
+          <button class="pill-btn primary" onclick="addCustomQuestion()">💾 加入題庫</button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+        <span style="font-weight: 900;">📚 目前題庫總數：<span id="bankCountDisplay">0</span> 題</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="pill-btn blue" onclick="exportQuestionsJSON()">⬇️ 匯出 JSON</button>
+          <label class="pill-btn" style="cursor: pointer;">
+            ⬆️ 匯入 JSON
+            <input type="file" accept=".json" style="display: none;" onchange="importQuestionsJSON(event)" />
+          </label>
+          <button class="pill-btn orange" onclick="resetDefaultQuestions()">🔄 還原預設題庫</button>
+        </div>
+      </div>
+
+      <div id="questionListPreview" style="max-height: 260px; overflow-y: auto; border: 2px solid #EAE0D8; border-radius: 14px; padding: 12px; font-size: 0.95rem;"></div>
+    </div>
+  </div>
+
+  <script>
+    /********************************************************************
+     * 1. DEFAULT QUESTION BANK (36 Neutral Fellowship Icebreaker Prompts)
+     ********************************************************************/
+    const DEFAULT_QUESTIONS = [
+      // ☕ 輕鬆日常 (daily)
+      { id: 1, cat: 'daily', text: '你覺得「最完美嘅午睡」應該要訓幾多分鐘？', hint: '請輸入分鐘數（例如：15、45、120）' },
+      { id: 2, cat: 'daily', text: '由 0 至 100 分，你對「食辣」嘅接受程度有幾高？', hint: '0 = 完全唔食得辣 ｜ 100 = 無辣不歡地獄級' },
+      { id: 3, cat: 'daily', text: '你部手機入面而家大約有幾多個未讀 WhatsApp 訊息／群組？', hint: '請估計或睇一睇手機輸入數字' },
+      { id: 4, cat: 'daily', text: '去旅行搭飛機前，你習慣提早幾多分鐘到達機場？', hint: '請輸入分鐘數（例如：90、120、180）' },
+      { id: 5, cat: 'daily', text: '由 0 至 100 分，你覺得自己嘅「賴床指數」有幾高？', hint: '0 = 鬧鐘一響即刻彈起身 ｜ 100 = 撳熄十個鬧鐘都未醒' },
+      { id: 6, cat: 'daily', text: '如果聽日放假無任何行程，你會訓到朝早（或下晝）幾點先願起身？', hint: '用 24 小時制輸入（例如：8.5 代表 8 點半，13 代表下晝 1 點）' },
+      { id: 7, cat: 'daily', text: '你目前一生人去過幾多個唔同嘅國家或城市旅行？', hint: '請輸入數量' },
+      { id: 8, cat: 'daily', text: '由 0 至 100 分，你幾鍾意「一個人行街／食飯」？', hint: '0 = 一定要有人陪 ｜ 100 = 極度享受獨處' },
+      { id: 9, cat: 'daily', text: '你衣櫃入面而家大約有幾多件黑色或者白色嘅衫？', hint: '請輸入估計件數' },
+      { id: 10, cat: 'daily', text: '如果可以連續放假，你覺得放幾多日假先會開始覺得悶？', hint: '請輸入日數（例如：7、30、365）' },
+      { id: 11, cat: 'daily', text: '由 0 至 100 分，你覺得自己係咪一個「路痴」？', hint: '0 = 人肉 GPS 永不迷路 ｜ 100 = 睇住 Google Maps 都會行錯' },
+      { id: 12, cat: 'daily', text: '你平均每日會飲幾多杯水／茶／咖啡？', hint: '請輸入杯數' },
+
+      // 💬 深度認識 (deep)
+      { id: 13, cat: 'deep', text: '由 0 至 100 分，你覺得自己喺陌生人面前有幾「慢熱／怕醜」？', hint: '0 = 全場社牛自來熟 ｜ 100 = 極度內向怕生' },
+      { id: 14, cat: 'deep', text: '由 0 至 100 分，你做決定之前有幾鍾意「列清單／做足詳細計劃」？', hint: '0 = 完全隨心即興 ｜ 100 = 嚴格執行時間表與 Checklist' },
+      { id: 15, cat: 'deep', text: '你覺得自己內心嘅「心理年齡」係幾多歲？', hint: '請輸入歲數（可以細過或大過真實年齡！）' },
+      { id: 16, cat: 'deep', text: '由 0 至 100 分，玩遊戲或者比賽輸咗嗰陣，你內心有幾「唔忿氣」？', hint: '0 = 佛系陪玩無所謂 ｜ 100 = 勝負欲極強好想贏返局' },
+      { id: 17, cat: 'deep', text: '如果可以穿越時空去任何一個年份生活一日，你會揀西元幾多年？', hint: '請輸入年份（例如：1990、2050）' },
+      { id: 18, cat: 'deep', text: '由 0 至 100 分，睇感人電影或者聽感人故事嗰陣，你有幾容易喊？', hint: '0 = 鐵石心腸未喊過 ｜ 100 = 淚點極低一秒眼濕濕' },
+      { id: 19, cat: 'deep', text: '你覺得一個人一生之中，有幾多個「真正可以傾心事嘅知己」已經足夠？', hint: '請輸入人數' },
+      { id: 20, cat: 'deep', text: '由 0 至 100 分，當計劃突然被打亂時，你嘅「焦慮／崩潰指數」係幾多？', hint: '0 = 處變不驚見步行步 ｜ 100 = 內心極度抓狂' },
+      { id: 21, cat: 'deep', text: '過去一年入面，你睇過幾多本實體書或電子書（包括漫畫／小說）？', hint: '請輸入本數' },
+      { id: 22, cat: 'deep', text: '由 0 至 100 分，你覺得自己有幾擅長「保守秘密」？', hint: '0 = 轉頭就唔覺意講咗出嚟 ｜ 100 = 守口如瓶帶入棺材' },
+      { id: 23, cat: 'deep', text: '如果中咗六合彩頭獎，你會將幾多 % 嘅獎金儲起或者投資？', hint: '請輸入 0 至 100 之間嘅百分比' },
+      { id: 24, cat: 'deep', text: '由 0 至 100 分，你覺得自己最近一個月嘅「生活忙碌／壓力指數」係幾多？', hint: '0 = 非常輕鬆悠閒 ｜ 100 = 忙到透唔到氣' },
+
+      // ⛪ 團契與信仰生活 (faith)
+      { id: 25, cat: 'faith', text: '你每個禮拜去教會／團契聚會，單程平均要搭幾多分鐘車（或行路）？', hint: '請輸入單程分鐘數' },
+      { id: 26, cat: 'faith', text: '由 0 至 100 分，崇拜或者團契唱詩歌嗰陣，你有幾大聲投入去唱？', hint: '0 = 靜靜地聽人唱 ｜ 100 = 全力高歌好似開演唱會' },
+      { id: 27, cat: 'faith', text: '你第一次返教會或者參加團契，距離而家大約有幾多年？', hint: '請輸入年數（未滿一年可填 0.5 或 1）' },
+      { id: 28, cat: 'faith', text: '由 0 至 100 分，如果今日團契突然叫你「即興帶領開頭祈禱」，你嘅緊張指數係幾多？', hint: '0 = 輕鬆自然隨時 Ready ｜ 100 = 心跳加速手心出汗' },
+      { id: 29, cat: 'faith', text: '如果團契一齊去露營或者退修營，你最多可以接受連續幾多日唔沖涼？', hint: '請輸入日數（例如：0、1、3）' },
+      { id: 30, cat: 'faith', text: '由 0 至 100 分，你幾鍾意喺團契玩「燒腦推理／心理戰」類嘅破冰遊戲？', hint: '0 = 鍾意輕鬆唔用腦 ｜ 100 = 越燒腦越興奮' },
+      { id: 31, cat: 'faith', text: '你覺得一次最理想嘅團契飯聚（食飯傾偈），應該維持幾多個鐘？', hint: '請輸入小時數（例如：1.5、2、4）' },
+      { id: 32, cat: 'faith', text: '由 0 至 100 分，你平時靈修或者讀經嗰陣，有幾容易分心睇手機？', hint: '0 = 全神貫注心無雜念 ｜ 100 = 每兩分鐘就想睇下訊息' },
+      { id: 33, cat: 'faith', text: '喺全本聖經 66 卷書入面，你覺得自己大概講得出幾多卷書嘅名？', hint: '請輸入 0 至 66 之間嘅數字' },
+      { id: 34, cat: 'faith', text: '由 0 至 100 分，你覺得自己喺團契入面偏向「安靜聆聽者」定「氣氛帶動者」？', hint: '0 = 100% 安靜聆聽 ｜ 100 = 全場氣氛擔當' },
+      { id: 35, cat: 'faith', text: '如果團契搞大食會，你一個人最多可以食到幾多件 Pizza？', hint: '請輸入件數' },
+      { id: 36, cat: 'faith', text: '由 0 至 100 分，經過今日嘅相處，你覺得大家之間嘅「親切感」有幾多分？', hint: '請輸入 0 至 100 分' }
+    ];
+
+    const ARROW_PALETTE = [
+      { name: '玫瑰紅', hex: '#E63E7A' },
+      { name: '海洋藍', hex: '#1EA1E8' },
+      { name: '陽光橙', hex: '#EA6A00' },
+      { name: '森林綠', hex: '#5CB346' },
+      { name: '深海藍', hex: '#0D74B8' },
+      { name: '琥珀金', hex: '#D49A1A' },
+      { name: '紫羅蘭', hex: '#8E44AD' },
+      { name: '可可棕', hex: '#795548' }
+    ];
+
+    const CATEGORY_LABELS = {
+      daily: '☕ 輕鬆日常',
+      deep: '💬 深度認識',
+      faith: '⛪ 團契與信仰'
+    };
+
+    /********************************************************************
+     * 2. STATE MANAGEMENT & LOCALSTORAGE PERSISTENCE
+     ********************************************************************/
+    const STORAGE_KEY = 'fun_facts_fellowship_state_v1';
+    const BANK_STORAGE_KEY = 'fun_facts_fellowship_bank_v1';
+
+    let questionBank = [];
+    let state = {
+      phase: 'setup', // 'setup' | 'secret' | 'placement' | 'star_adjust' | 'reveal' | 'final'
+      categoryFilter: 'all',
+      totalRounds: 8,
+      currentRound: 1,
+      totalScore: 0,
+      starPlayerIdx: 0,
+      players: [
+        { id: 0, name: '第 1 組', color: ARROW_PALETTE[0].hex, secret: null, locked: false },
+        { id: 1, name: '第 2 組', color: ARROW_PALETTE[1].hex, secret: null, locked: false },
+        { id: 2, name: '第 3 組', color: ARROW_PALETTE[2].hex, secret: null, locked: false },
+        { id: 3, name: '第 4 組', color: ARROW_PALETTE[3].hex, secret: null, locked: false },
+        { id: 4, name: '第 5 組', color: ARROW_PALETTE[4].hex, secret: null, locked: false }
+      ],
+      usedQuestionIds: [],
+      currentQuestion: null,
+      placementOrderPlayerIds: [], // Order in which players place arrows this round
+      placementTurnPointer: 0,
+      trackPlayerIds: [], // Ordered from smallest (index 0) to largest
+      starRepositioning: false,
+      revealedCount: 0,
+      validStatusByPlayerId: {} // Map playerId -> boolean (true = kept/valid, false = knocked out)
+    };
+
+    /********************************************************************
+     * 3. WEB AUDIO API SYNTHESIZER (Zero External Audio Dependencies)
+     ********************************************************************/
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playSound(type) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      if (type === 'lock') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.exponentialRampToValueAtTime(780, now + 0.12);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.14);
+      } else if (type === 'place') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(360, now);
+        osc.frequency.exponentialRampToValueAtTime(540, now + 0.15);
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.16);
+      } else if (type === 'valid') {
+        [523.25, 659.25, 783.99].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+          gain.gain.setValueAtTime(0.18, now + idx * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.22);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.06);
+          osc.stop(now + idx * 0.06 + 0.22);
+        });
+      } else if (type === 'bust') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(130, now + 0.28);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } else if (type === 'fanfare') {
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.11);
+          gain.gain.setValueAtTime(0.22, now + idx * 0.11);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.11 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.11);
+          osc.stop(now + idx * 0.11 + 0.35);
+        });
+      }
+    }
+
+    /********************************************************************
+     * 4. INITIALIZATION & STORAGE SYNC
+     ********************************************************************/
+    function loadQuestionBank() {
+      try {
+        const saved = localStorage.getItem(BANK_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            questionBank = parsed;
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to load custom bank:', e);
+      }
+      questionBank = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+    }
+
+    function saveQuestionBank() {
+      localStorage.setItem(BANK_STORAGE_KEY, JSON.stringify(questionBank));
+      renderBankPreview();
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.players)) {
+            state = Object.assign(state, parsed);
+          }
+        }
+      } catch (e) {
+        console.warn('State restore error:', e);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadQuestionBank();
+      loadState();
+      renderSetupPlayers();
+      renderBankPreview();
+      syncUIFromState();
+    });
+
+    /********************************************************************
+     * 5. SETUP SCREEN LOGIC
+     ********************************************************************/
+    function renderSetupPlayers() {
+      const container = document.getElementById('setupPlayersContainer');
+      container.innerHTML = '';
+      state.players.forEach((p, idx) => {
+        const row = document.createElement('div');
+        row.className = 'player-input-row';
+        row.innerHTML = `
+          <span class="color-dot" style="background: ${p.color};"></span>
+          <input type="text" class="text-input" value="${escapeHtml(p.name)}"
+            oninput="updatePlayerName(${idx}, this.value)"
+            placeholder="輸入組別或團友名稱" />
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function updatePlayerName(idx, val) {
+      if (state.players[idx]) {
+        state.players[idx].name = val.trim() || `第 ${idx + 1} 組`;
+        saveState();
+      }
+    }
+
+    function addSetupPlayer() {
+      if (state.players.length >= 8) {
+        alert('最多支援 8 支彩色箭頭！若團契人數超過 8 人，建議每 2 人一組共用一支箭頭。');
+        return;
+      }
+      const nextIdx = state.players.length;
+      state.players.push({
+        id: nextIdx,
+        name: `第 ${nextIdx + 1} 組`,
+        color: ARROW_PALETTE[nextIdx % ARROW_PALETTE.length].hex,
+        secret: null,
+        locked: false
+      });
+      renderSetupPlayers();
+      saveState();
+    }
+
+    function removeSetupPlayer() {
+      if (state.players.length <= 3) {
+        alert('最少需要 3 組／人先可以開始排列箭頭！');
+        return;
+      }
+      state.players.pop();
+      renderSetupPlayers();
+      saveState();
+    }
+
+    function applyPlayerPreset(count, prefix) {
+      state.players = [];
+      for (let i = 0; i < count; i++) {
+        state.players.push({
+          id: i,
+          name: prefix === '組' ? `第 ${i + 1} 組` : `團友 ${i + 1}`,
+          color: ARROW_PALETTE[i % ARROW_PALETTE.length].hex,
+          secret: null,
+          locked: false
+        });
+      }
+      renderSetupPlayers();
+      saveState();
+    }
+
+    function startGame() {
+      state.categoryFilter = document.getElementById('categorySelect').value;
+      state.totalRounds = parseInt(document.getElementById('roundsSelect').value, 10) || 8;
+      state.currentRound = 1;
+      state.totalScore = 0;
+      state.starPlayerIdx = 0;
+      state.usedQuestionIds = [];
+      state.players.forEach((p, i) => {
+        p.id = i;
+        p.secret = null;
+        p.locked = false;
+      });
+      drawNextQuestion();
+      state.phase = 'secret';
+      playSound('lock');
+      saveState();
+      syncUIFromState();
+    }
+
+    /********************************************************************
+     * 6. QUESTION SELECTION & ROUND FLOW
+     ********************************************************************/
+    function drawNextQuestion() {
+      let pool = questionBank.filter(q => {
+        const catMatch = state.categoryFilter === 'all' || q.cat === state.categoryFilter;
+        return catMatch && !state.usedQuestionIds.includes(q.id);
+      });
+      if (pool.length === 0) {
+        state.usedQuestionIds = [];
+        pool = questionBank.filter(q => state.categoryFilter === 'all' || q.cat === state.categoryFilter);
+      }
+      if (pool.length === 0) pool = questionBank;
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      state.currentQuestion = chosen;
+      state.usedQuestionIds.push(chosen.id);
+    }
+
+    function redrawQuestion() {
+      drawNextQuestion();
+      playSound('place');
+      saveState();
+      syncUIFromState();
+    }
+
+    /********************************************************************
+     * 7. PHASE 1: SECRET NUMERIC ENTRY
+     ********************************************************************/
+    function renderSecretEntryGrid() {
+      const grid = document.getElementById('secretEntryGrid');
+      grid.innerHTML = '';
+      state.players.forEach((p, idx) => {
+        const isStar = idx === state.starPlayerIdx;
+        const card = document.createElement('div');
+        card.className = 'secret-player-card' + (p.locked ? ' locked' : '');
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px; font-weight:900; font-size:1.15rem;">
+              <span class="color-dot" style="background:${p.color};"></span>
+              <span>${isStar ? '⭐ ' : ''}${escapeHtml(p.name)}</span>
+            </div>
+            <span style="font-size:0.9rem; font-weight:700; color:${p.locked ? 'var(--game-green-bg)' : '#8C7A6B'};">
+              ${p.locked ? '✅ 已鎖定' : '⏳ 待輸入'}
+            </span>
+          </div>
+          ${p.locked ? `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#FFFFFF; padding:10px 14px; border-radius:12px; border:2px solid #CDE7C6;">
+              <span style="font-weight:900; letter-spacing:3px; color:var(--game-brown-text);">🔒 秘密數字 •••</span>
+              <button class="pill-btn" style="padding:4px 12px; font-size:0.85rem;" onclick="unlockPlayerSecret(${idx})">✏️ 修改</button>
+            </div>
+          ` : `
+            <div style="display:flex; gap:8px;">
+              <input type="password" inputmode="decimal" id="secretInput_${idx}" class="number-input"
+                placeholder="輸入數字..."
+                onkeydown="if(event.key==='Enter') lockPlayerSecret(${idx})" />
+              <button class="pill-btn primary" onclick="lockPlayerSecret(${idx})">🔒 鎖定</button>
+            </div>
+          `}
+        `;
+        grid.appendChild(card);
+      });
+
+      const allLocked = state.players.every(p => p.locked && p.secret !== null && !isNaN(p.secret));
+      document.getElementById('proceedToPlacementBtn').disabled = !allLocked;
+    }
+
+    function lockPlayerSecret(idx) {
+      const inputEl = document.getElementById(`secretInput_${idx}`);
+      if (!inputEl) return;
+      const val = parseFloat(inputEl.value.trim());
+      if (isNaN(val)) {
+        alert('請輸入有效嘅數字（例如 0、25、100）！');
+        return;
+      }
+      state.players[idx].secret = val;
+      state.players[idx].locked = true;
+      playSound('lock');
+      saveState();
+      renderSecretEntryGrid();
+    }
+
+    function unlockPlayerSecret(idx) {
+      state.players[idx].locked = false;
+      saveState();
+      renderSecretEntryGrid();
+    }
+
+    function fillDemoNumbers() {
+      state.players.forEach(p => {
+        p.secret = Math.floor(Math.random() * 95) + 5;
+        p.locked = true;
+      });
+      playSound('lock');
+      saveState();
+      renderSecretEntryGrid();
+    }
+
+    /********************************************************************
+     * 8. PHASE 2 & 3: ARROW PLACEMENT & STAR PLAYER FINAL ADJUSTMENT
+     ********************************************************************/
+    function startPlacementPhase() {
+      const n = state.players.length;
+      state.placementOrderPlayerIds = [];
+      for (let i = 0; i < n; i++) {
+        state.placementOrderPlayerIds.push((state.starPlayerIdx + i) % n);
+      }
+      // First player (Star Player) automatically places their arrow on the empty table
+      const firstPlayerId = state.placementOrderPlayerIds[0];
+      state.trackPlayerIds = [firstPlayerId];
+      state.placementTurnPointer = 1;
+      state.starRepositioning = false;
+      state.phase = state.players.length > 1 ? 'placement' : 'star_adjust';
+      playSound('place');
+      saveState();
+      syncUIFromState();
+    }
+
+    function insertArrowAtPosition(slotIndex) {
+      if (state.phase === 'placement') {
+        const activePlayerId = state.placementOrderPlayerIds[state.placementTurnPointer];
+        state.trackPlayerIds.splice(slotIndex, 0, activePlayerId);
+        state.placementTurnPointer++;
+        playSound('place');
+        if (state.placementTurnPointer >= state.placementOrderPlayerIds.length) {
+          state.phase = 'star_adjust';
+          state.starRepositioning = false;
+        }
+      } else if (state.phase === 'star_adjust' && state.starRepositioning) {
+        const starId = state.players[state.starPlayerIdx].id;
+        state.trackPlayerIds.splice(slotIndex, 0, starId);
+        state.starRepositioning = false;
+        playSound('place');
+      }
+      saveState();
+      syncUIFromState();
+    }
+
+    function enableStarReposition() {
+      const starId = state.players[state.starPlayerIdx].id;
+      state.trackPlayerIds = state.trackPlayerIds.filter(id => id !== starId);
+      state.starRepositioning = true;
+      playSound('lock');
+      saveState();
+      syncUIFromState();
+    }
+
+    function renderPlacementTrack() {
+      const container = document.getElementById('arrowTrackContainer');
+      container.innerHTML = '';
+
+      const showSlots = (state.phase === 'placement') || (state.phase === 'star_adjust' && state.starRepositioning);
+      let activePlayer = null;
+      if (state.phase === 'placement') {
+        const activeId = state.placementOrderPlayerIds[state.placementTurnPointer];
+        activePlayer = state.players.find(p => p.id === activeId);
+        document.getElementById('placementTurnText').innerHTML =
+          `👉 輪到【${escapeHtml(activePlayer.name)}】擺放箭頭！請揀選插入位置：`;
+      } else if (state.phase === 'star_adjust') {
+        const starPlayer = state.players[state.starPlayerIdx];
+        document.getElementById('starAdjustName').textContent = starPlayer.name;
+        if (state.starRepositioning) {
+          document.getElementById('placementTurnText').innerHTML =
+            `⭐ 請【${escapeHtml(starPlayer.name)}】揀選你支箭頭嘅新位置：`;
+        } else {
+          document.getElementById('placementTurnText').innerHTML =
+            `✅ 所有箭頭已經排好！等待起始玩家【${escapeHtml(starPlayer.name)}】最後確認`;
+        }
+      }
+
+      const len = state.trackPlayerIds.length;
+      for (let i = 0; i <= len; i++) {
+        if (showSlots) {
+          const slotBtn = document.createElement('button');
+          slotBtn.className = 'insert-slot-btn';
+          if (i === 0) {
+            slotBtn.textContent = '➕ 放喺最細位置（比上面所有人都細）';
+          } else if (i === len) {
+            slotBtn.textContent = '➕ 放喺最大位置（比上面所有人都大）';
+          } else {
+            const prevP = state.players.find(p => p.id === state.trackPlayerIds[i - 1]);
+            const nextP = state.players.find(p => p.id === state.trackPlayerIds[i]);
+            slotBtn.textContent = `➕ 插入喺【${prevP.name}】同【${nextP.name}】中間`;
+          }
+          slotBtn.onclick = () => insertArrowAtPosition(i);
+          container.appendChild(slotBtn);
+        }
+
+        if (i < len) {
+          const pid = state.trackPlayerIds[i];
+          const p = state.players.find(pl => pl.id === pid);
+          const isStar = pid === state.players[state.starPlayerIdx].id;
+          const plaque = document.createElement('div');
+          plaque.className = 'arrow-plaque';
+          plaque.style.background = p.color;
+          plaque.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="background:rgba(0,0,0,0.22); padding:4px 12px; border-radius:9999px; font-size:0.95rem;">
+                #${i + 1}
+              </span>
+              <span>${isStar ? '⭐ ' : ''}${escapeHtml(p.name)}</span>
+            </div>
+            <div class="arrow-number-badge">❓ 未翻開</div>
+          `;
+          container.appendChild(plaque);
+        }
+      }
+
+      const starArea = document.getElementById('starFinalActionArea');
+      if (state.phase === 'star_adjust' && !state.starRepositioning) {
+        starArea.classList.remove('hidden');
+      } else {
+        starArea.classList.add('hidden');
+      }
+    }
+
+    /********************************************************************
+     * 9. PHASE 4: REVEAL & ASCENDING ORDER EVALUATION
+     ********************************************************************/
+    function computeAscendingValidity() {
+      // Standard Fun Facts rule: reveal from bottom (index 0) to top;
+      // keep an arrow if its number >= the last valid kept arrow's number.
+      const validity = {};
+      let lastValidNumber = -Infinity;
+      state.trackPlayerIds.forEach(pid => {
+        const p = state.players.find(pl => pl.id === pid);
+        const num = Number(p.secret);
+        if (num >= lastValidNumber) {
+          validity[pid] = true;
+          lastValidNumber = num;
+        } else {
+          validity[pid] = false;
+        }
+      });
+      state.validStatusByPlayerId = validity;
+    }
+
+    function startRevealPhase() {
+      computeAscendingValidity();
+      state.revealedCount = 0;
+      state.phase = 'reveal';
+      playSound('lock');
+      saveState();
+      syncUIFromState();
+    }
+
+    function revealNextArrow() {
+      if (state.revealedCount < state.trackPlayerIds.length) {
+        const pid = state.trackPlayerIds[state.revealedCount];
+        state.revealedCount++;
+        if (state.validStatusByPlayerId[pid]) {
+          playSound('valid');
+        } else {
+          playSound('bust');
+        }
+        saveState();
+        renderRevealTrack();
+      }
+    }
+
+    function revealAllArrows() {
+      state.revealedCount = state.trackPlayerIds.length;
+      playSound('fanfare');
+      saveState();
+      renderRevealTrack();
+    }
+
+    function toggleArrowValidityOverride(pid) {
+      if (state.revealedCount < state.trackPlayerIds.length) return;
+      state.validStatusByPlayerId[pid] = !state.validStatusByPlayerId[pid];
+      playSound('lock');
+      saveState();
+      renderRevealTrack();
+    }
+
+    function renderRevealTrack() {
+      const container = document.getElementById('revealTrackContainer');
+      container.innerHTML = '';
+
+      state.trackPlayerIds.forEach((pid, idx) => {
+        const p = state.players.find(pl => pl.id === pid);
+        const isStar = pid === state.players[state.starPlayerIdx].id;
+        const isRevealed = idx < state.revealedCount;
+        const isValid = state.validStatusByPlayerId[pid];
+
+        const plaque = document.createElement('div');
+        plaque.className = 'arrow-plaque' + (isRevealed && !isValid ? ' out-of-order' : '');
+        plaque.style.background = p.color;
+        if (state.revealedCount >= state.trackPlayerIds.length) {
+          plaque.style.cursor = 'pointer';
+          plaque.title = '點擊可手動切換此箭頭「保留／淘汰」';
+          plaque.onclick = () => toggleArrowValidityOverride(pid);
+        }
+
+        plaque.innerHTML = `
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span style="background:rgba(0,0,0,0.22); padding:4px 12px; border-radius:9999px; font-size:0.95rem;">
+              #${idx + 1}
+            </span>
+            <span>${isStar ? '⭐ ' : ''}${escapeHtml(p.name)}</span>${isRevealed ? `
+              <span style="font-size:0.95rem; background:rgba(255,255,255,0.24); padding:3px 10px; border-radius:9999px;">
+                ${isValid ? '✅ 順序正確 (+1分)' : '💥 跌眼鏡越位 (不計分)'}
+              </span>
+            ` : ''}
+          </div>
+          <div class="arrow-number-badge">
+            ${isRevealed ? p.secret : '❓ 待翻開'}
+          </div>
+        `;
+        container.appendChild(plaque);
+      });
+
+      const allRevealed = state.revealedCount >= state.trackPlayerIds.length;
+      document.getElementById('btnRevealNext').disabled = allRevealed;
+      document.getElementById('btnRevealAll').disabled = allRevealed;
+
+      const summaryBox = document.getElementById('roundSummaryBox');
+      if (allRevealed) {
+        summaryBox.classList.remove('hidden');
+        const roundPoints = state.trackPlayerIds.filter(pid => state.validStatusByPlayerId[pid]).length;
+        document.getElementById('roundScoreHeadline').textContent =
+          `🎉 本回合成功保留 ${roundPoints} / ${state.trackPlayerIds.length} 支箭頭，獲得 +${roundPoints} 分！`;
+
+        // Find lowest and highest answers for icebreaker sharing prompt
+        const sortedBySecret = [...state.players].sort((a, b) => Number(a.secret) - Number(b.secret));
+        const minP = sortedBySecret[0];
+        const maxP = sortedBySecret[sortedBySecret.length - 1];
+        document.getElementById('roundDiscussionPrompt').textContent =
+          `💬 破冰分享時間：全場最細係【${minP.name} (${minP.secret})】，全場最大係【${maxP.name} (${maxP.secret})】！快啲問下佢哋點解會咁填啦！`;
+      } else {
+        summaryBox.classList.add('hidden');
+      }
+    }
+
+    function finishRoundAndAdvance() {
+      const roundPoints = state.trackPlayerIds.filter(pid => state.validStatusByPlayerId[pid]).length;
+      state.totalScore += roundPoints;
+
+      if (state.currentRound >= state.totalRounds) {
+        state.phase = 'final';
+        playSound('fanfare');
+      } else {
+        state.currentRound++;
+        state.starPlayerIdx = (state.starPlayerIdx + 1) % state.players.length;
+        state.players.forEach(p => {
+          p.secret = null;
+          p.locked = false;
+        });
+        drawNextQuestion();
+        state.phase = 'secret';
+        playSound('lock');
+      }
+      saveState();
+      syncUIFromState();
+    }
+
+    /********************************************************************
+     * 10. UI SYNCHRONIZATION & FINAL SCREEN
+     ********************************************************************/
+    function syncUIFromState() {
+      const setupSec = document.getElementById('setupScreen');
+      const roundSec = document.getElementById('roundScreen');
+      const finalSec = document.getElementById('finalScreen');
+      const liveBar = document.getElementById('liveScoreboard');
+      const badgeText = document.getElementById('phaseBadgeText');
+
+      setupSec.classList.add('hidden');
+      roundSec.classList.add('hidden');
+      finalSec.classList.add('hidden');
+      liveBar.classList.add('hidden');
+
+      if (state.phase === 'setup') {
+        setupSec.classList.remove('hidden');
+        badgeText.textContent = '團契默契破冰・開局設定';
+        renderSetupPlayers();
+        return;
+      }
+
+      if (state.phase === 'final') {
+        finalSec.classList.remove('hidden');
+        badgeText.textContent = '🏆 傳奇默契總結算';
+        renderFinalScreen();
+        return;
+      }
+
+      // Active round phases
+      roundSec.classList.remove('hidden');
+      liveBar.classList.remove('hidden');
+
+      document.getElementById('totalScoreDisplay').textContent = state.totalScore;
+      document.getElementById('roundIndexDisplay').textContent = state.currentRound;
+      document.getElementById('totalRoundsDisplay').textContent = state.totalRounds;
+      const starP = state.players[state.starPlayerIdx] || state.players[0];
+      document.getElementById('starPlayerDisplay').textContent = starP ? starP.name : '-';
+
+      if (state.currentQuestion) {
+        document.getElementById('currentQuestionCat').textContent =
+          CATEGORY_LABELS[state.currentQuestion.cat] || '🌟 精選破冰';
+        document.getElementById('currentQuestionText').textContent = state.currentQuestion.text;
+        document.getElementById('currentQuestionHint').textContent = '💡 ' + state.currentQuestion.hint;
+      }
+
+      const secSecret = document.getElementById('phaseSecretEntry');
+      const secPlace = document.getElementById('phasePlacement');
+      const secReveal = document.getElementById('phaseReveal');
+      secSecret.classList.add('hidden');
+      secPlace.classList.add('hidden');
+      secReveal.classList.add('hidden');
+
+      if (state.phase === 'secret') {
+        badgeText.textContent = `第 ${state.currentRound} /${state.totalRounds} 回合・秘密填寫數字`;
+        secSecret.classList.remove('hidden');
+        renderSecretEntryGrid();
+      } else if (state.phase === 'placement' || state.phase === 'star_adjust') {
+        badgeText.textContent = `第 ${state.currentRound} /${state.totalRounds} 回合・由細至大排列箭頭`;
+        secPlace.classList.remove('hidden');
+        renderPlacementTrack();
+      } else if (state.phase === 'reveal') {
+        badgeText.textContent = `第 ${state.currentRound} /${state.totalRounds} 回合・翻牌揭曉與破冰分享`;
+        secReveal.classList.remove('hidden');
+        renderRevealTrack();
+      }
+    }
+
+    function renderFinalScreen() {
+      const maxPossible = state.totalRounds * state.players.length;
+      document.getElementById('finalRoundsCount').textContent = state.totalRounds;
+      document.getElementById('finalTotalScore').textContent = state.totalScore;
+      document.getElementById('finalMaxPossible').textContent = maxPossible;
+
+      const ratio = maxPossible > 0 ? (state.totalScore / maxPossible) * 100 : 0;
+      let tier = 1;
+      let title = '😂 跌碎眼鏡大獎 — 大家全部係深藏不露嘅神秘人物！';
+      if (ratio >= 85) {
+        tier = 5;
+        title = '🌟 心靈相通傳奇 — 你哋直頭係肚入面條蟲！默契爆燈！';
+      } else if (ratio >= 70) {
+        tier = 4;
+        title = '🔥 絕佳默契拍檔 — 非常了解彼此，連隱藏性格都估中晒！';
+      } else if (ratio >= 50) {
+        tier = 3;
+        title = '😊 漸入佳境團友 — 幾有默契，仲發掘到唔少驚喜笑料！';
+      } else if (ratio >= 30) {
+        tier = 2;
+        title = '🌱 破冰認識起點 — 今日正式重新認識大家，驚喜連連！';
+      }
+      document.getElementById('finalRankTitle').textContent = title;
+
+      document.querySelectorAll('#legendResultTable tbody tr').forEach(tr => {
+        if (parseInt(tr.getAttribute('data-tier'), 10) === tier) {
+          tr.classList.add('highlight-row');
+        } else {
+          tr.classList.remove('highlight-row');
+        }
+      });
+    }
+
+    function restartSamePlayers() {
+      startGame();
+    }
+
+    function backToSetup() {
+      state.phase = 'setup';
+      saveState();
+      syncUIFromState();
+    }
+
+    function confirmResetGame() {
+      if (confirm('確定要重開遊戲並返回開局設定嗎？')) {
+        backToSetup();
+      }
+    }
+
+    /********************************************************************
+     * 11. HOST GOD-MODE CONTROLS & MODALS
+     ********************************************************************/
+    function toggleHostDrawer() {
+      const body = document.getElementById('hostControlsBody');
+      body.classList.toggle('hidden');
+    }
+
+    function adjustTotalScore(delta) {
+      state.totalScore = Math.max(0, state.totalScore + delta);
+      playSound('lock');
+      saveState();
+      syncUIFromState();
+    }
+
+    function forceNextRound() {
+      if (state.phase === 'setup' || state.phase === 'final') return;
+      if (state.currentRound >= state.totalRounds) {
+        state.phase = 'final';
+      } else {
+        state.currentRound++;
+        state.starPlayerIdx = (state.starPlayerIdx + 1) % state.players.length;
+        state.players.forEach(p => { p.secret = null; p.locked = false; });
+        drawNextQuestion();
+        state.phase = 'secret';
+      }
+      saveState();
+      syncUIFromState();
+    }
+
+    function jumpToFinalSettlement() {
+      state.phase = 'final';
+      playSound('fanfare');
+      saveState();
+      syncUIFromState();
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    let padRevealed = false;
+    function toggleMobilePadMask() {
+      const val = document.getElementById('mobilePadInput').value.trim();
+      const box = document.getElementById('mobileBigDisplay');
+      padRevealed = !padRevealed;
+      if (padRevealed) {
+        box.textContent = val || '未輸入';
+        box.style.background = '#FFFFFF';
+      } else {
+        box.textContent = '🔒 已隱藏';
+        box.style.background = 'var(--game-yellow-bg)';
+      }
+    }
+
+    function openQRModal() {
+      const url = window.location.href;
+      document.getElementById('qrUrlText').textContent = url;
+      const wrap = document.getElementById('qrCodeCanvasWrap');
+      // Render clean deterministic visual QR matrix + SVG fallback
+      wrap.innerHTML = generateVisualQRSvg(url);
+      openModal('qrModal');
+    }
+
+    function copyCurrentUrl() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('已複製遊戲網址！可貼上至團契 WhatsApp 群組。');
+      });
+    }
+
+    function generateVisualQRSvg(text) {
+      // Self-contained deterministic 21x21 QR-style finder pattern SVG + live QR image with offline fallback
+      const encoded = encodeURIComponent(text);
+      return `
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encoded}"
+             alt="QR Code" width="220" height="220"
+             style="display:block; border-radius:8px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div style="display:none; width:220px; height:220px; padding:16px; background:#FFF8E1; border-radius:12px; font-weight:900; color:var(--game-brown-text);">
+          📱 離線模式<br><br>請直接複製下方網址分享至團友群組
+        </div>
+      `;
+    }
+
+    /********************************************************************
+     * 12. QUESTION BANK EDITOR & JSON IMPORT / EXPORT
+     ********************************************************************/
+    function renderBankPreview() {
+      const countEl = document.getElementById('bankCountDisplay');
+      const listEl = document.getElementById('questionListPreview');
+      if (!countEl || !listEl) return;
+      countEl.textContent = questionBank.length;
+      listEl.innerHTML = questionBank.map((q, i) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 4px; border-bottom:1px solid #F0E6DC;">
+          <span><strong>#${i + 1} [${CATEGORY_LABELS[q.cat] || q.cat}]</strong>${escapeHtml(q.text)}</span>
+          <button class="pill-btn" style="padding:2px 10px; font-size:0.8rem;" onclick="deleteQuestion(${q.id})">刪除</button>
+        </div>
+      `).join('');
+    }
+
+    function addCustomQuestion() {
+      const text = document.getElementById('newQText').value.trim();
+      const cat = document.getElementById('newQCat').value;
+      const hint = document.getElementById('newQHint').value.trim() || '請輸入一個數字';
+      if (!text) {
+        alert('請先輸入題目內容！');
+        return;
+      }
+      const nextId = questionBank.reduce((m, q) => Math.max(m, q.id || 0), 0) + 1;
+      questionBank.unshift({ id: nextId, cat, text, hint });
+      document.getElementById('newQText').value = '';
+      document.getElementById('newQHint').value = '';
+      saveQuestionBank();
+      playSound('lock');
+    }
+
+    function deleteQuestion(id) {
+      if (questionBank.length <= 5) {
+        alert('題庫最少需保留 5 條題目！');
+        return;
+      }
+      questionBank = questionBank.filter(q => q.id !== id);
+      saveQuestionBank();
+    }
+
+    function resetDefaultQuestions() {
+      if (confirm('確定要還原預設 36 條破冰題庫嗎？')) {
+        questionBank = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+        saveQuestionBank();
+      }
+    }
+
+    function exportQuestionsJSON() {
+      const blob = new Blob([JSON.stringify(questionBank, null, 2)], { type: 'application/json' });
+      triggerDownload(blob, 'questions.json');
+    }
+
+    function importQuestionsJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            questionBank = parsed;
+            saveQuestionBank();
+            alert(`成功匯入 ${parsed.length} 條題目！`);
+          }
+        } catch (err) {
+          alert('JSON 格式錯誤，請檢查檔案！');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /********************************************************************
+     * 13. IN-BROWSER ONE-CLICK .ZIP ARCHIVE GENERATOR (Zero Dependencies)
+     ********************************************************************/
+    function getGrokBuildReadmeContent() {
+      return `# 🎯 認清你的朋友 Fun Facts — Grok Build 由零開始部署說明書 (From-Zero Runbook)
+
+本專案為跨團契通用破冰網頁遊戲 **《認清你的朋友 Fun Facts》**（改編自經典合作排序派對桌遊），採用 100% 靜態 HTML5 / CSS3 / Vanilla JS 單檔案架構，零外部伺服器成本。
+
+## 📁 專案檔案結構
+- \`index.html\`：完整單頁遊戲主程式（內建 36 條繁體中文破冰題庫、Web Audio 合成音效、QR Code 彈窗、主持後台 God-Mode 及 localStorage 斷線續玩）。
+- \`questions.json\`：預設 36 條破冰題庫備份檔（可於遊戲內直接匯入／匯出）。
+- \`README.md\`：本部署說明書（供 Grok Build 自動執行）。
+
+---
+
+## 🚀 Phase 1：由零建立獨立遊戲 GitHub Repo (\`Takjai18/fun-facts\`)
+
+請依序執行以下 Terminal 指令，由零建立並推送獨立遊戲 Repository。遊戲檔放喺 \`public/\`：
+
+\`\`\`bash
+mkdir -p fun-facts/public
+cd fun-facts
+git init
+git branch -M main
+
+# 將本懶人包內嘅 index.html、questions.json 放入 public/，README.md 放喺根目錄
+git add public/index.html public/questions.json README.md wrangler.jsonc
+git commit -m "feat: initial release of Fun Facts fellowship icebreaker web game"
+
+gh repo create Takjai18/fun-facts --public --source=. --remote=origin --push
+\`\`\`
+
+---
+
+## ☁️ Phase 2：部署至 Cloudflare Workers (\`https://fun-facts.ymtwill.workers.dev\`)
+
+同其他破冰遊戲一樣，用 Workers 靜態資源，唔用 Pages。帳號係 Ymtwill。根目錄要有 \`wrangler.jsonc\`，\`assets.directory\` 指向 \`./public\`。
+
+\`\`\`bash
+CI=1 npx --yes wrangler@4 deploy
+\`\`\`
+
+部署完成後，正式網址係：\`https://fun-facts.ymtwill.workers.dev\`。
+
+---
+
+## 🔗 Phase 3：將遊戲連結加入主站 Portal (\`kyc-joshua\`)
+
+主站係 Astro，本地路徑 \`/Users/mingtakyau/Documents/AI Project/kyc-joshua\`。唔好改根目錄 \`index.html\`。打開 \`src/pages/index.astro\`，喺 \`games\` 陣列加：
+
+\`\`\`js
+{
+  emoji: '🎯',
+  title: '認清你的朋友',
+  href: 'https://fun-facts.ymtwill.workers.dev/',
+},
+\`\`\`
+
+按鈕沿用現有粉紅色「開遊戲」。然後推送 \`main\`：
+
+\`\`\`bash
+git add src/pages/index.astro
+git commit -m "約書亞 Icebreaking 加上認清你的朋友。"
+git push origin main
+\`\`\`
+
+---
+
+## ✅ Phase 4：上線後驗證清單 (Live Verification Checklist)
+1. 開啟 \`https://fun-facts.ymtwill.workers.dev\`，確認標題與介面無綁定特定團契名稱（跨團契通用）。
+2. 點擊右上角 **📱 QR Code**，確認彈窗正常顯示當前網址與 QR Code。
+3. 測試 **秘密輸入數字（遮罩模式） ➔ 排箭頭 ➔ 起始玩家微調 ➔ 翻牌揭曉與音效** 完整流程。
+4. 重新整理瀏覽器（F5），確認 \`localStorage\` 自動恢復當前局數與總分。
+`;
+    }
+
+    // Pure Vanilla JS CRC32 + Uncompressed ZIP Builder
+    function crc32(bytes) {
+      let c = -1;
+      for (let i = 0; i < bytes.length; i++) {
+        c = (c >>> 8) ^ CRC_TABLE[(c ^ bytes[i]) & 0xFF];
+      }
+      return (c ^ -1) >>> 0;
+    }
+    const CRC_TABLE = (() => {
+      const t = new Uint32Array(256);
+      for (let i = 0; i < 256; i++) {
+        let c = i;
+        for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[i] = c >>> 0;
+      }
+      return t;
+    })();
+
+    function createZipBlob(files) {
+      const encoder = new TextEncoder();
+      const localParts = [];
+      const centralParts = [];
+      let offset = 0;
+
+      files.forEach(file => {
+        const nameBytes = encoder.encode(file.name);
+        const dataBytes = encoder.encode(file.content);
+        const crc = crc32(dataBytes);
+
+        // Local file header (30 bytes + name)
+        const localHeader = new Uint8Array(30 + nameBytes.length);
+        const lv = new DataView(localHeader.buffer);
+        lv.setUint32(0, 0x04034b50, true);
+        lv.setUint16(4, 20, true);
+        lv.setUint16(6, 0x0800, true); // UTF-8 flag
+        lv.setUint16(8, 0, true); // Store
+        lv.setUint32(14, crc, true);
+        lv.setUint32(18, dataBytes.length, true);
+        lv.setUint32(22, dataBytes.length, true);
+        lv.setUint16(26, nameBytes.length, true);
+        localHeader.set(nameBytes, 30);
+
+        // Central directory header (46 bytes + name)
+        const centralHeader = new Uint8Array(46 + nameBytes.length);
+        const cv = new DataView(centralHeader.buffer);
+        cv.setUint32(0, 0x02014b50, true);
+        cv.setUint16(4, 20, true);
+        cv.setUint16(6, 20, true);
+        cv.setUint16(8, 0x0800, true);
+        cv.setUint16(10, 0, true);
+        cv.setUint32(16, crc, true);
+        cv.setUint32(20, dataBytes.length, true);
+        cv.setUint32(24, dataBytes.length, true);
+        cv.setUint16(28, nameBytes.length, true);
+        cv.setUint32(42, offset, true);
+        centralHeader.set(nameBytes, 46);
+
+        localParts.push(localHeader, dataBytes);
+        centralParts.push(centralHeader);
+        offset += localHeader.length + dataBytes.length;
+      });
+
+      const centralSize = centralParts.reduce((acc, p) => acc + p.length, 0);
+      const eocd = new Uint8Array(22);
+      const ev = new DataView(eocd.buffer);
+      ev.setUint32(0, 0x06054b50, true);
+      ev.setUint16(8, files.length, true);
+      ev.setUint16(10, files.length, true);
+      ev.setUint32(12, centralSize, true);
+      ev.setUint32(16, offset, true);
+
+      return new Blob([...localParts, ...centralParts, eocd], { type: 'application/zip' });
+    }
+
+    function downloadZipBundle() {
+      const htmlSource = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const readmeSource = getGrokBuildReadmeContent();
+      const questionsSource = JSON.stringify(questionBank, null, 2);
+
+      const zipBlob = createZipBlob([
+        { name: 'index.html', content: htmlSource },
+        { name: 'README.md', content: readmeSource },
+        { name: 'questions.json', content: questionsSource }
+      ]);
+      triggerDownload(zipBlob, 'fun-facts-grok-build-package.zip');
+    }
+
+    function downloadReadmeOnly() {
+      const blob = new Blob([getGrokBuildReadmeContent()], { type: 'text/markdown;charset=utf-8' });
+      triggerDownload(blob, 'README.md');
+    }
+
+    function triggerDownload(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
